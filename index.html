@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCAL STORAGE</title>
+    <style>
+        .student-card{
+            background-color: #fff;
+            padding: 10px;
+            margin: 15px;
+            border-radius: 5px;
+            box-shadow:  2px 2px 5px #d8d4d4;
+            border: 1px solid #ddd;   
+        }
+       .container{
+        flex:block;
+        flex-direction: column;
+        justify-content: center;
+       }
+       .input-text{
+        margin-left:15px;       } 
+    </style>
+</head>
+<body>
+    <h1>Students</h1>
+    <div class="container">
+    <input 
+    class="input-text"
+    type="text" 
+    id="search" 
+    placeholder="search" 
+    onkeyup="loadsearchResult()"/>
+
+    <div id="students-container">
+    </div>
+</div>
+    <script>
+        const Students=[
+            "vaishnavi",
+            "asha",
+            "anil",
+            "komal",
+            "shubhangi",
+            "vaishali",
+            "hemangi",
+            "muskan",
+            "harshada",
+         ]
+    const StudentsContainer = document.getElementById('students-container');
+
+    function renderStudents(studentList){
+        StudentsContainer.innerHTML = '';
+
+        studentList.forEach((stud)=>{
+            StudentsContainer.innerHTML +=`<div class='student-card'>${stud}</div>`
+        })
+    }
+    renderStudents(Students);
+    function loadsearchResult(){
+        const inputElement = document.getElementById('search');
+        const searchText = inputElement.value.toLowerCase();  
+        
+        const filteredStudents = Students.filter((stud)=>{
+            if(stud.toLowerCase().includes(searchText)){
+                return true;
+            }
+        })
+      renderStudents(filteredStudents);
+    }
+    </script>
+</body>
+</html>
